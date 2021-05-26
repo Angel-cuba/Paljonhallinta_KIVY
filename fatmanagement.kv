@@ -1,0 +1,85 @@
+#: kivy 2.0 
+
+# Global UI element definitions
+
+<Big_Label@Label>:
+    font_size: 32
+    color: 'edd926'
+
+<Big_TextInput@TextInput>:
+    font_size: 32
+    multiline: False
+    halign: 'center' # horizontal aligment
+    # Verticla centering: half of the height minushalf of the line height
+    # This produces correct padding for single line text input
+    padding_y: self.height / 2.0 -(self.line_height / 2.0)
+    write_tab: False
+
+<Big_Button@Button>:
+    font_size: 24
+
+# Blayout class definition
+<Blayout>:
+    id: weight_calculator
+
+    # Properties
+    height_value: height_text
+    weight_value: weight_text 
+    age_value: age_text
+    sex_value: sex_text
+    bmi_value: bmi_text
+    fat_value: fat_text
+    bmi_btn : bmi_button
+    fat_btn : fat_button
+
+    # Orientation
+    orientation: 'vertical' 
+
+    # UI elements 
+    Big_Label:
+        id: height_label
+        text: 'Rasvalaskuri'
+
+    Label:
+        id: mandatory_label
+        text: '* are mandatory'
+
+    Big_TextInput:
+        id: height_text
+        hint_text: '*pituus (cm)'
+
+    Big_TextInput:
+        id: weight_text
+        hint_text: '*paino (kg)'
+
+    Big_TextInput:
+        id: age_text
+        hint_text: '*ikä'
+
+    Big_TextInput:
+        id: sex_text
+        hint_text: '*Mies 1, nainen 0'
+
+    Big_Button:
+        id: bmi_button
+        text: 'Laske BMI'
+        on_press: root.calculate_bmi()
+        # Alternative way on_press weight_calculator.calculate_bmi()
+
+    Big_TextInput:
+        id: bmi_text
+        disabled: True
+        disabled_foreground_color: 'edd926'
+        background_color: '000000'
+
+    Big_Button:
+        id: fat_button
+        text: 'Laske rasvaprosentti'
+        on_press: root.calculate_fat()
+        # Alternative way on_press weight_calculator.calculate_fat()
+
+    Big_TextInput:
+        id: fat_text
+        disabled: True
+        disabled_foreground_color: 'edd926'
+        background_color: '000000'
